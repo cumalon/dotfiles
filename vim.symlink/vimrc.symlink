@@ -1,0 +1,15 @@
+
+source ~/.vim/func/myfunc.vim
+
+set splitright
+set nobackup
+set noswapfile
+
+syntax on
+colorscheme desert
+
+call SetVimStartedDir()
+let $VIM_ACTIVE_SESSION=expand('%:p')
+noremap <C-D> :call UpdateVimActiveSession()
+
+

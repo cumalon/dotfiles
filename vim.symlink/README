@@ -1,0 +1,13 @@
+
+This configuration works by means of symbolic links that point to the files
+under this directory. Hence, do not move or copy these files! Every ".symlink"
+file should be pointed by a symbolic link in your home directory 
+(e.g. ~/.foo -> ~/.dotfiles/foo.symlink).
+
+You must execute the following commands in your home directory in order to
+create the necessary symbolic links:
+
+$ cd ~
+$ ln -s .dotfiles/vim.symlink .vim
+$ ln -s .dotfiles/vim.symlink/vimrc.symlink .vimrc 
+

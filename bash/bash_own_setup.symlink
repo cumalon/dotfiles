@@ -1,0 +1,33 @@
+
+## escape sequence micro-tutorial:
+## - 256 colors on the foreground: '38;5;ColorNumberm'
+## - 256 colors on the background: '48;5;ColorNumberm'
+## - SET codes: 1=bold, 2=dim, 4=underline, 7=reverse, 8=hidden
+## - RESET codes: 0=all, 21=bold, 22=dim, 24=underline, 27=reverse, 28=hidden
+## - escape sequence codes can be combined using ;
+DARKBG='[48;5;240m'
+LIGHTFG='[38;5;255m'
+WARNFG='[1;38;5;196m'
+EMPHSFG='[1;38;5;255m'
+ENDPROMPT='[0m'
+
+## prompt tuning using escape sequences:
+## - set VIM_ACTIVE_SESSION env var in your .vimrc to improve terminal experience
+PS1='\[${DARKBG}${LIGHTFG}\]['
+if [ -z "$VIM_ACTIVE_SESSION" ]
+then
+  PS1+='\[${WARNFG}\]EXIT'
+else
+  PS1+='\[${EMPHSFG}\]${VIM_ACTIVE_SESSION}'
+fi
+PS1+='\[${DARKBG}${LIGHTFG}\]] $(date +%H:%M):\W\[${ENDPROMPT}\] '
+
+## tunned complete features (by joanl):
+complete -o filenames -F _longopt -A command mpirun
+complete -o filenames -F _longopt -A command mpirun_paffinity
+
+## this disables XON/XOFF (software flow control). This allows using Ctrl-s to
+## start forward search when using reverse-i-search in the terminal:
+stty -ixon
+
+
